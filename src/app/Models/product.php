@@ -14,5 +14,6 @@ class Product extends Model
         'price',
         'image',
         'description',
+        'season'
     ];
 }
