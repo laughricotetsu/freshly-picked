@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::simplePaginate(6);
+        $items = Product::with('season')->get();
 
         return view('products.index',compact('products'));
     }
