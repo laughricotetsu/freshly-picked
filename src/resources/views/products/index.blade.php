@@ -1,41 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>商品一覧</h1>
+<div class="container">
 
-<a href="/products/register">新規登録</a>
+<title>商品一覧</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
 
-<form action="/products/search" method="GET" style="margin-top:20px;">
-    <input type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
-    <button type="submit">検索</button>
-</form>
+  <header class="header">
+    <h1 class="logo">mogitate</h1>
+  </header>
 
-<table border="1" style="margin-top:20px;">
-    <tr>
-        <th>ID</th>
-        <th>商品名</th>
-        <th>価格</th>
-        <th>操作</th>
-        <th>画像</th>
-    </tr>
+  <div class="container">
+    <h2 class="page-title">商品一覧</h2>
+    <a href="#" class="add-btn">＋ 商品を追加</a>
 
-    @foreach ($products as $product)
-    <tr>
-        <td>{{ $product->id }}</td>
-        <td><a href="/products/{{ $product->id }}">{{ $product->name }}</a></td>
-        <td>{{ $product->price }}円</td>
-        <td>
-            <a href="/products/{{ $product->id }}/update">編集</a>
+    <div class="main-content">
 
-            <form action="/products/{{ $product->id }}/delete" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" onclick="return confirm('削除しますか？')">削除</button>
-            </form>
-        </td>
-        <td><img src="/storage/img/{{ $product->image}}" alt=""></td>
-    </tr>
-    @endforeach
-</table>
-{{ $products->links() }}
+        <!-- 左側：検索エリア -->
+        <aside class="sidebar">
+        <form>
+            <input type="text" placeholder="商品名で検索" class="search-input">
+            <button class="search-btn">検索</button>
+            <label class="price-label">価格順で表示</label>
+            <select class="price-select">
+            <option>選択してください</option>
+            <option value="low">安い順</option>
+            <option value="high">高い順</option>
+            </select>
+        </form>
+        </aside>
+
+        <!-- 右側：商品一覧 -->
+    <section class="product-list">
+            @foreach ($products as $product)
+            <a href="{{ route('products.show', $product->id) }}" class="product-card-link">
+                <div class="product-card">
+                    <img src="{{ asset('storage/img/' . $product->image) }}" alt="{{ $product->name }}">
+                    <span class="name">{{ $product->name }}</span>
+                    <span class="price">¥{{ number_format($product->price) }}</span>
+                </div>
+            @endforeach
+        </section>
+    </div>
+
+    <div class="pagination">
+        {{ $products->links() }}
+    </div>
+
+</div>
 @endsection

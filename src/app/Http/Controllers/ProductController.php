@@ -12,10 +12,24 @@ class ProductController extends Controller
     /**
      * 商品一覧
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::simplePaginate(6);
+        $products = Product::Paginate(6);
         $items = Product::with('season')->get();
+        $query = Product::query();
+        
+
+        // 検索
+        if ($request->filled('keyword')) {
+            $query->where('name', 'like', '%' . $request->keyword . '%');
+        }
+
+        // 価格順
+        if ($request->order === 'low') {
+            $query->orderBy('price', 'asc');
+        } elseif ($request->order === 'high') {
+            $query->orderBy('price', 'desc');
+        }
 
         return view('products.index',compact('products'));
     }
@@ -41,9 +55,8 @@ class ProductController extends Controller
     /**
      * 商品詳細
      */
-    public function show($productId)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($productId);
 
         return view('products.show', compact('product'));
     }
