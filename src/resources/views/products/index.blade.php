@@ -16,6 +16,7 @@
         <th>商品名</th>
         <th>価格</th>
         <th>操作</th>
+        <th>画像</th>
     </tr>
 
     @foreach ($products as $product)
@@ -32,6 +33,7 @@
                 <button type="submit" onclick="return confirm('削除しますか？')">削除</button>
             </form>
         </td>
+        <td><img src="/storage/img/{{ $product->image}}" alt=""></td>
     </tr>
     @endforeach
 </table>
