@@ -1,0 +1,96 @@
+.product-detail-container {
+    max-width: 1000px;
+    margin: 40 auto;
+    padding: 40px;
+    background: #ffffff;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.product-detail-box {
+    display: flex;
+    gap: 40px;
+}
+
+/* 左：画像 */
+.product-image-area {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.file-label {
+    background: #eee;
+    padding: 8px 16px;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.file-input {
+    display: none;
+}
+
+
+/* 右：情報フォーム */
+.product-info-area {
+    width: 60%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #555;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.season-radio label {
+    margin-right: 20px;
+}
+
+
+/* ボタン */
+.button-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-gray {
+    background: #ddd;
+    color: #333;
+}
+
+.btn-yellow {
+    background: #F7C600;
+    color: #333;
+}
+
+.btn-delete {
+    background: #ff4a4a;;
+    color: white;
+    font-size: 22px;
+}

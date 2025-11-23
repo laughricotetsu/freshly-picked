@@ -1,50 +1,37 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品登録</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<h1>商品登録フォーム</h1>
+@section('content')
+<div class="container" style="max-width: 600px;">
+    <h2>商品登録</h2>
 
-<!-- エラーメッセージ -->
-@if ($errors->any())
-    <div style="color:red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 
-<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    
-    <div>
-        <label>商品名：</label><br>
-        <input type="text" name="name" value="{{ old('name') }}">
-    </div>
+        <!-- 商品画像 -->
+        <div class="form-group mb-3">
+            <label>商品画像</label>
+            <input type="file" name="image" class="form-control">
+        </div>
 
-    <div>
-        <label>価格：</label><br>
-        <input type="number" name="price" value="{{ old('price') }}">
-    </div>
+        <!-- 商品名 -->
+        <div class="form-group mb-3">
+            <label>商品名</label>
+            <input type="text" name="name" class="form-control" placeholder="商品名を入力">
+        </div>
 
-    <div>
-        <label>商品画像：</label><br>
-        <input type="file" name="image">
-    </div>
+        <!-- 価格 -->
+        <div class="form-group mb-3">
+            <label>価格</label>
+            <input type="number" name="price" class="form-control" placeholder="例: 800">
+        </div>
 
-    <div>
-        <label>説明文：</label><br>
-        <textarea name="description">{{ old('description') }}</textarea>
-    </div>
+        <!-- 説明 -->
+        <div class="form-group mb-3">
+            <label>説明</label>
+            <textarea name="description" class="form-control" rows="3"></textarea>
+        </div>
 
-    <button type="submit">登録する</button>
-</form>
-
-</body>
-</html>
+        <button type="submit" class="btn btn-primary">登録する</button>
+    </form>
+</div>
+@endsection

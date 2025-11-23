@@ -14,7 +14,7 @@
 
   <div class="container">
     <h2 class="page-title">商品一覧</h2>
-    <a href="#" class="add-btn">＋ 商品を追加</a>
+    <a href="{{ route('products.create') }}" class="add-btn">＋ 商品を追加</a>
 
     <div class="main-content">
 

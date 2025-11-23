@@ -6,6 +6,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Season;
+
 
 class ProductController extends Controller
 {
@@ -14,10 +16,9 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::Paginate(6);
-        $items = Product::with('season')->get();
+        $products = Product::paginate(6);
+
         $query = Product::query();
-        
 
         // 検索
         if ($request->filled('keyword')) {
@@ -31,15 +32,15 @@ class ProductController extends Controller
             $query->orderBy('price', 'desc');
         }
 
-        return view('products.index',compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
      * 商品登録フォーム表示
      */
-    public function create()
+    public function register()
     {
-        return view('products.create');
+        return view('products.register');
     }
 
     /**
@@ -47,7 +48,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->only(['name', 'price']));
+        $product = new Product;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+
+        // 画像保存
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('products', 'public');
+            $product->image = $path;
+        }
+
+        $product->save();
 
         return redirect('/products')->with('success', '商品を登録しました！');
     }
@@ -57,8 +69,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
-        return view('products.show', compact('product'));
+        $seasons = Season::all();
+        return view('products.show', compact('product','seasons'));
     }
 
     /**
@@ -76,12 +88,11 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $productId)
     {
+        $product = Product::findOrFail($productId);
 
-    $product = Product::findOrFail($productId);
+        $product->update($request->only(['name', 'price']));
 
-    $product->update($request->only(['name', 'price']));
-
-    return redirect("/products/{$productId}")->with('success', '商品を更新しました！');
+        return redirect("/products/{$productId}")->with('success', '商品を更新しました！');
     }
 
     /**
