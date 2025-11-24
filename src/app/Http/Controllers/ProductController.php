@@ -26,9 +26,9 @@ class ProductController extends Controller
         }
 
         // 価格順
-        if ($request->order === 'low') {
+        if ($request->sort === 'low') {
             $query->orderBy('price', 'asc');
-        } elseif ($request->order === 'high') {
+        } elseif ($request->sort === 'high') {
             $query->orderBy('price', 'desc');
         }
 
@@ -38,9 +38,10 @@ class ProductController extends Controller
     /**
      * 商品登録フォーム表示
      */
-    public function register()
+    public function create()
     {
-        return view('products.register');
+        $seasons = Season::all();
+        return view('products.create',compact('seasons'));
     }
 
     /**
@@ -48,11 +49,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = new Product;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->description = $request->description;
-
+        $form = $request->all();
+        StoreProduct::create($form);
         // 画像保存
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');

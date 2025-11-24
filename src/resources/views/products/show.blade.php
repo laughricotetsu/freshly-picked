@@ -17,7 +17,7 @@
             <img src="{{ asset('storage/img/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
             
             <label class="file-label">
-                ファイルを選択
+                <!-- ファイルを選択 -->
                 <input type="file" name="image" class="file-input">
             </label>
         </div>

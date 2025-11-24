@@ -19,18 +19,18 @@
     <div class="main-content">
 
         <!-- 左側：検索エリア -->
-        <aside class="sidebar">
-        <form>
-            <input type="text" placeholder="商品名で検索" class="search-input">
+    <aside class="sidebar">
+    <form method="GET" action="{{ route('products.index') }}">
+        <input type="text" placeholder="商品名で検索" class="search-input">
             <button class="search-btn">検索</button>
             <label class="price-label">価格順で表示</label>
-            <select class="price-select">
-            <option>選択してください</option>
-            <option value="low">安い順</option>
-            <option value="high">高い順</option>
+            <select name="sort" class="price-select" onchange="this.form.submit()">
+                <option value="">選択してください</option>
+                <option value="low"  {{ request('sort') == 'low' ? 'selected' : '' }}>安い順</option>
+                <option value="high" {{ request('sort') == 'high' ? 'selected' : '' }}>高い順</option>
             </select>
-        </form>
-        </aside>
+    </form>
+    </aside>
 
         <!-- 右側：商品一覧 -->
     <section class="product-list">
