@@ -16,8 +16,6 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(6);
-
         $query = Product::query();
 
         // 検索
@@ -26,11 +24,20 @@ class ProductController extends Controller
         }
 
         // 価格順
-        if ($request->sort === 'low') {
-            $query->orderBy('price', 'asc');
-        } elseif ($request->sort === 'high') {
+
+        switch ($request->sort) {
+            case 'price_desc':
+            // 高い順
             $query->orderBy('price', 'desc');
-        }
+            break;
+
+            case 'price_asc':
+            // 低い順
+            $query->orderBy('price', 'asc');
+            break;
+
+    }
+        $products = $query->paginate(6)->appends($request->query());
 
         return view('products.index', compact('products'));
     }
