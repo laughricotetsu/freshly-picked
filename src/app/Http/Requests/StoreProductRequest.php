@@ -22,7 +22,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'required',
             'description_max' => 'required|string|max:120',
             'image' => 'required',
-            'image_format' => 'required',
+            // 'image_format' => 'required',
         ];
     }
 
@@ -37,7 +37,7 @@ class StoreProductRequest extends FormRequest
             'description.required' => '商品説明を入力してください',
             'description_max.required' => '120文字以内で入力してください',
             'image.required' => '商品画像を登録してください',
-            'image_format.required' => '「.png」または「.jpeg」形式でアップロードしてください',
+            // 'image_format.required' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }
