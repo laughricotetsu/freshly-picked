@@ -51,15 +51,19 @@
 
 {{-- 季節 --}}
 <div class="form-group">
-    @error('season')
-    {{ $message }}
+    @error('season_id')
+        {{ $message }}
     @enderror
-    <label>季節</label>
-    <div class="season-radio">
+
+    <label>季節（複数選択可）</label>
+
+    <div class="season-checkbox">
         @forelse ($seasons as $season)
             <label>
-                <input type="radio" name="season_id" value="{{ $season->id }}"
-                    {{ old('season_id') == $season->id ? 'checked' : '' }}>
+                <input type="checkbox"
+                    name="season_id[]"
+                    value="{{ $season->id }}"
+                    {{ (is_array(old('season_id')) && in_array($season->id, old('season_id'))) ? 'checked' : '' }}>
                 {{ $season->name }}
             </label>
         @empty
@@ -67,6 +71,7 @@
         @endforelse
     </div>
 </div>
+
 
         <!-- 商品説明 -->
         <div class="form-group">

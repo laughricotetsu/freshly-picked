@@ -22,17 +22,17 @@
     <aside class="sidebar">
     <form action="{{ route('products.index') }}" method="GET">
         <div class="form-group">
-        <input type="text" placeholder="商品名で検索" class="search-input">
+        <input type="text" name="keyword" placeholder="商品名で検索" class="search-input">
             <button class="search-btn">検索</button>
             <label for="sort">価格順で表示</label>
             <select name="sort" id="sort" class="form-control">
                 <option value="">選択してください</option>
-                <option value="price_desc"  {{ request('sort') == 'price_desk' ? 'selected' : '' }}>価格が高い順</option>
+                <option value="price_desc"  {{ request('sort') == 'price_desc' ? 'selected' : '' }}>価格が高い順</option>
              <option value="price_asc" {{ request('sort')=='price_asc' ? 'selected' : '' }}>
                 価格が低い順
             </option>
             </select>
-        </div>   
+        </div>
     </form>
     </aside>
 

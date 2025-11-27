@@ -14,33 +14,33 @@ class ProductController extends Controller
     /**
      * 商品一覧
      */
-    public function index(Request $request)
-    {
-        $query = Product::query();
+public function index(Request $request)
+{
+    $query = Product::query();
 
-        // 検索
-        if ($request->filled('keyword')) {
-            $query->where('name', 'like', '%' . $request->keyword . '%');
+    // --- 検索 ---
+    if ($request->filled('keyword')) {
+        $query->where('name', 'like', '%' . $request->keyword . '%');
+    }
+
+    // --- 並び替え ---
+    if ($request->filled('sort')) {
+
+        // 高い順
+        if ($request->sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
         }
 
-        // 価格順
-
-        switch ($request->sort) {
-            case 'price_desc':
-            // 高い順
-            $query->orderBy('price', 'desc');
-            break;
-
-            case 'price_asc':
-            // 低い順
+        // 低い順
+        if ($request->sort === 'price_asc') {
             $query->orderBy('price', 'asc');
-            break;
-
+        }
     }
-        $products = $query->paginate(6)->appends($request->query());
 
-        return view('products.index', compact('products'));
-    }
+    $products = $query->paginate(6)->appends($request->query());
+
+    return view('products.index', compact('products'));
+}
 
     /**
      * 商品登録フォーム表示
