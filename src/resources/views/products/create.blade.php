@@ -76,8 +76,7 @@
         <!-- 商品説明 -->
         <div class="form-group">
             <label>商品説明 <span class="required">必須</span></label>
-            <textarea placeholder="商品の説明を入力"></textarea>
-        </div>
+            <input type="text" name="description" class="form-control" placeholder="商品の説明を入力" value="{{ old('description') }}" />
 
         <div class="button-area">
         <a href="{{ route('products.index') }}" class="btn-submit">戻る</a>

@@ -105,9 +105,7 @@ public function index(Request $request)
      */
     public function destroy($productId)
     {
-        $product = Product::findOrFail($productId);
-
-        $product->delete();
+        Product::findOrFail($productId)->delete();
 
         return redirect('/products')->with('success', '商品を削除しました！');
     }

@@ -11,9 +11,9 @@
     </div>
 @endif
 
-<form action="/products/{{ $product->id }}/update" method="POST">
+<form action="{{ route('products.update', $product->id) }}" method="POST">
     @csrf
-
+    
     <label>商品名:</label><br>
     <input type="text" name="name" value="{{ old('name', $product->name) }}"><br><br>
 

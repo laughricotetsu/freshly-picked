@@ -20,7 +20,7 @@ class StoreProductRequest extends FormRequest
             'season_id.*' => 'integer|exists:seasons,id',
             'description' => 'required',
             'description_max' => 'required|string|max:120',
-            'image'  => 'required|image|mimes:jpeg,png,
+            'image'  => 'required|image|mimes:jpeg,png,'
         ];
     }
 
@@ -31,11 +31,11 @@ class StoreProductRequest extends FormRequest
             'price.required' => '値段を入力してください',
             'price.integer'  => '数値で入力してください',
             'price_between.required' => '0~10000円以内で入力してください',
-            'season.required' => '季節を選択してください',
+            'season_id.required' => '季節を選択してください',
             'description.required' => '商品説明を入力してください',
             'description_max.required' => '120文字以内で入力してください',
             'image.required' => '商品画像を登録してください',
-            'image_format.required' => '「.png」または「.jpeg」形式でアップロードしてください',
+            'image.required' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }

@@ -63,25 +63,24 @@
                 </div>
 
                 {{-- ボタン --}}
-                <div class="button-area">
-                    <a href="{{ route('products.index') }}" class="btn btn-gray">戻る</a>
+            <div class="button-area">
+            <a href="{{ route('products.index') }}" class="btn btn-gray">戻る</a>
 
-                    <button class="btn btn-yellow" type="submit">変更を保存</button>
-
+            <button class="btn btn-yellow" type="submit">変更を保存</button>
+            </div>
                     {{-- 削除 --}}
-                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <div class="delete-form__button">
-                            <input type="hidden" name="id" value="{{ $product['id']}}">
-                        <button class="delete-form__button-submit">削除</button>
-                        </div>
-                    </form>
+            <form action="{{ route('products.delete', $product->id) }}" method="POST" style="margin-top:10px;">
+            @csrf
+            @method('DELETE')
+                <button type="submit" class="delete-form__button-submit btn btn-red">
+                削除
+                </button>
+            </form>
+
                 </div>
 
-            </form>
+        </form>
         </div>
-
     </div>
 </div>
 @endsection
