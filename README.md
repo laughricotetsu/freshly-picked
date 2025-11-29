@@ -43,7 +43,7 @@ php artisan migrate
 7.シーディングの実行  
 ``` bash  
 php artisan db:seed  
-'''  
+  
   
 ## 使用技術(実行環境)  
 - PHP8.3.0  
@@ -51,7 +51,7 @@ php artisan db:seed
 - MySQL8.0.26  
 
 ## ER図  
-![alt](index.drawio.png)  
+![alt](erd.png)  
   
 ## URL  
 開発環境：http://localhost/  
