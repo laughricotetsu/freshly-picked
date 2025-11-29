@@ -17,14 +17,14 @@ use App\Http\Controllers\ProductController;
         ->name('products.show'); // 詳細
 
     Route::delete('/{id}/delete', [ProductController::class, 'destroy'])
-    ->name('products.destroy');
+    ->name('products.delete');
 
 
     Route::get('/{id}/update', [ProductController::class, 'edit'])
     ->name('products.edit'); // 更新フォーム
 
 
-    Route::post('/{id}/update', [ProductController::class, 'update'])
+    Route::put('/{id}/update', [ProductController::class, 'update'])
     ->name('products.update'); // 更新処理
 
 });

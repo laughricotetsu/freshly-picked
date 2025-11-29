@@ -14,17 +14,28 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:255',
-            'price' => 'required|integer|min:0',
+         'name'  => 'required',
+            'price' => 'required|integer|min:0|max:10000',
+            'season_id'   => 'required|array',
+            'season_id.*' => 'integer|exists:seasons,id',
+            'description' => 'required|string|max:120',
+            'image'  => 'required|image|mimes:jpeg,png,'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required'  => '商品名は必須です。',
-            'price.required' => '価格は必須です。',
-            'price.integer'  => '価格は数値で入力してください。',
+            'name.required'  => '商品名を入力してください',
+            'price.required' => '値段を入力してください',
+            'price.integer'  => '数値で入力してください',
+            'price_between.required' => '0~10000円以内で入力してください',
+            'season_id.required' => '季節を選択してください',
+            'description.required' => '商品説明を入力してください',
+            'description_max.required' => '120文字以内で入力してください',
+            'image.required' => '商品画像を登録してください',
+            'image.required' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }
+

@@ -55,19 +55,27 @@ public function index(Request $request)
      * 商品登録処理
      */
     public function store(StoreProductRequest $request)
-    {
-        $form = $request->all();
-        StoreProduct::create($form);
-        // 画像保存
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('products', 'public');
-            $product->image = $path;
-        }
-
-        $product->save();
-
-        return redirect('/products')->with('success', '商品を登録しました！');
+{
+    // 画像を保存
+    $imageName = null;
+    if ($request->hasFile('image')) {
+        $imageName = $request->file('image')->store('img', 'public');
     }
+    // 商品を登録
+    $product = Product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'description' => $request->description,
+        'image' => $imageName,
+    ]);
+
+    // 季節（中間テーブルへ保存）
+    if ($request->has('season_id')) {
+        $product->seasons()->sync($request->season_id);
+    }
+
+    return redirect()->route('products.index');
+}
 
     /**
      * 商品詳細
@@ -81,24 +89,38 @@ public function index(Request $request)
     /**
      * 商品更新フォーム表示
      */
-    public function edit($productId)
-    {
-        $product = Product::findOrFail($productId);
+    public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    $seasons = Season::all();
 
-        return view('products.edit', compact('product'));
-    }
+    return view('products.edit', compact('product', 'seasons'));
+}
 
     /**
      * 商品更新処理
      */
-    public function update(UpdateProductRequest $request, $productId)
-    {
-        $product = Product::findOrFail($productId);
+    public function update(Request $request, $id)
+{
+    $product = Product::findOrFail($id);
 
-        $product->update($request->only(['name', 'price']));
+    // 商品情報更新
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->description = $request->description ?? $product->description;
+    $product->save();
 
-        return redirect("/products/{$productId}")->with('success', '商品を更新しました！');
+    // 季節の更新（中間テーブル）
+    if ($request->has('season_id')) {
+        // 選択された季節に置き換える
+        $product->seasons()->sync($request->season_id);
+    } else {
+        // 何も選択されなかった場合 → 全解除
+        $product->seasons()->sync([]);
     }
+
+    return redirect()->route('products.show', $product->id);
+}
 
     /**
      * 商品削除

@@ -17,9 +17,8 @@ class StoreProductRequest extends FormRequest
             'name'  => 'required',
             'price' => 'required|integer|min:0|max:10000',
             'season_id'   => 'required|array',
-            'season_id.*' => 'integer|exists:seasons,id',
-            'description' => 'required',
-            'description_max' => 'required|string|max:120',
+            //'season_id.*' => 'integer|exists:seasons,id',
+            'description' => 'required|string|max:120',
             'image'  => 'required|image|mimes:jpeg,png,'
         ];
     }
@@ -33,9 +32,9 @@ class StoreProductRequest extends FormRequest
             'price_between.required' => '0~10000円以内で入力してください',
             'season_id.required' => '季節を選択してください',
             'description.required' => '商品説明を入力してください',
-            'description_max.required' => '120文字以内で入力してください',
+            'description_max:120' => '120文字以内で入力してください',
             'image.required' => '商品画像を登録してください',
-            'image.required' => '「.png」または「.jpeg」形式でアップロードしてください',
+            'image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }

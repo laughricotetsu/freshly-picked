@@ -41,18 +41,27 @@
                 </div>
 
                 {{-- 季節 --}}
-                <div class="form-group">
-                    <label>季節</label>
-                    <div class="season-radio">
-                        @foreach($seasons as $season)
-                            <label>
-                                <input type="radio" name="season_id" value="{{ $season->id }}"
-                                    {{ $product->season_id == $season->id ? 'checked' : '' }}>
-                                {{ $season->name }}
-                            </label>
-                        @endforeach
-                    </div>
-                </div>
+            <!-- 季節 -->
+        <div class="form-group">
+            @error('season_id')
+                {{ $message }}
+            @enderror
+
+            <label>季節（複数選択可）</label>
+            <div class="season-checkbox">
+                @forelse ($seasons as $season)
+                    <label>
+                        <input type="checkbox"
+                            name="season_id[]"
+                            value="{{ $season->id }}"
+                            {{ (is_array(old('season_id')) && in_array($season->id, old('season_id'))) ? 'checked' : '' }}>
+                        {{ $season->name }}
+                    </label>
+                @empty
+                    <p>季節情報がありません。</p>
+                @endforelse
+            </div>
+        </div>
 
                 {{-- 説明 --}}
                 <div class="form-group">
@@ -68,19 +77,17 @@
 
             <button class="btn btn-yellow" type="submit">変更を保存</button>
             </div>
+        </form>
                     {{-- 削除 --}}
-            <form action="{{ route('products.delete', $product->id) }}" method="POST" style="margin-top:10px;">
+        <form action="{{ route('products.delete', $product->id) }}" method="POST" class="delete-form">
             @csrf
             @method('DELETE')
-                <button type="submit" class="delete-form__button-submit btn btn-red">
-                削除
-                </button>
-            </form>
-
-                </div>
-
+            <button type="submit" class="delete-icon-btn">
+        <img src="{{ asset('public/storage/img/trash.png') }}" alt="削除" class="delete-icon">
+            </button>
         </form>
         </div>
     </div>
+</div>
 </div>
 @endsection
