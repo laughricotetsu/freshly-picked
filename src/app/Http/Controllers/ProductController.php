@@ -48,7 +48,7 @@ public function index(Request $request)
     public function create()
     {
         $seasons = Season::all();
-        return view('products.create',compact('seasons'));
+        return view('products.register',compact('seasons'));
     }
 
     /**
@@ -58,15 +58,19 @@ public function index(Request $request)
 {
     // 画像を保存
     $imageName = null;
+
     if ($request->hasFile('image')) {
-        $imageName = $request->file('image')->store('img', 'public');
+        $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+
+        $request->image->storeAs('public/img', $imageName);
     }
+
     // 商品を登録
     $product = Product::create([
         'name' => $request->name,
         'price' => $request->price,
-        'description' => $request->description,
         'image' => $imageName,
+        'description' => $request->description,
     ]);
 
     // 季節（中間テーブルへ保存）
@@ -85,7 +89,6 @@ public function index(Request $request)
         $seasons = Season::all();
         return view('products.show', compact('product','seasons'));
     }
-
     /**
      * 商品更新フォーム表示
      */
@@ -94,13 +97,13 @@ public function index(Request $request)
     $product = Product::findOrFail($id);
     $seasons = Season::all();
 
-    return view('products.edit', compact('product', 'seasons'));
+    return view('products.update', compact('product', 'seasons'));
 }
 
     /**
      * 商品更新処理
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductRequest $request, $id)
 {
     $product = Product::findOrFail($id);
 
@@ -110,16 +113,24 @@ public function index(Request $request)
     $product->description = $request->description ?? $product->description;
     $product->save();
 
+     // 画像アップロード処理
+    if ($request->hasFile('image')) {
+        $filename = time() . '.' . $request->image->getClientOriginalExtension();
+        $request->image->storeAs('public/img', $filename);
+        $product->image = $filename;
+        $product->save();
+    }
+
     // 季節の更新（中間テーブル）
     if ($request->has('season_id')) {
         // 選択された季節に置き換える
-        $product->seasons()->sync($request->season_id);
+        $product->seasons()->sync($request->season_id ?? []);
     } else {
         // 何も選択されなかった場合 → 全解除
         $product->seasons()->sync([]);
     }
 
-    return redirect()->route('products.show', $product->id);
+    return redirect()->route('products.index')->with('success', '商品を更新しました！');
 }
 
     /**

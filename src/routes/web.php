@@ -7,8 +7,8 @@ use App\Http\Controllers\ProductController;
     Route::get('/', [ProductController::class, 'index'])
         ->name('products.index'); // 一覧
 
-   Route::get('/create', [ProductController::class, 'create'])->name('products.create'); // 登録フォーム
-    Route::post('/create', [ProductController::class, 'store'])->name('products.store'); // 登録処理
+   Route::get('/register', [ProductController::class, 'create'])->name('products.register'); // 登録フォーム
+    Route::post('/register', [ProductController::class, 'store'])->name('products.store'); // 登録処理
 
     Route::get('/search', [ProductController::class, 'search'])
         ->name('products.search'); //検索

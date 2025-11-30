@@ -1,0 +1,201 @@
+/* ========== 全体コンテナ ========== */
+.product-detail-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto 80px;
+    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    color: #333;
+}
+
+/* ========== パンくず ========== */
+.breadcrumb {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* ========== 商品詳細ボックス ========== */
+.product-detail-box {
+    display: flex;
+    gap: 40px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 左側（画像） */
+.product-image-area {
+    width: 38%;
+    text-align: center;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* ファイル選択 */
+.file-label {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #eee;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+}
+
+.file-label:hover {
+    background-color: #ddd;
+}
+
+.file-input {
+    display: none;
+}
+
+/* 右側（フォーム） */
+.product-info-area {
+    width: 62%;
+}
+
+.form-group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    width: 100px;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #444;
+}
+
+.form-input,
+.form-textarea {
+    flex-grow: 1;
+    padding: 9px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline-offset: 2px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #f5c400;
+    box-shadow: 0 0 4px rgba(245, 196, 0, 0.6);
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* 季節チェックボックス */
+.season-checkbox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.season-checkbox label {
+    font-weight: normal;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.season-checkbox input[type="checkbox"] {
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: #ff0000;
+    font-size: 13px;
+    margin-left: 100px;
+    margin-top: 3px;
+}
+
+/* ボタン */
+.button-area {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 22px;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-gray {
+    background-color: #ccc;
+    color: #444;
+}
+
+.btn-gray:hover {
+    background-color: #b3b3b3;
+}
+
+.btn-yellow {
+    background-color: #f5c400;
+    color: #222;
+}
+
+.btn-yellow:hover {
+    background-color: #dfb800;
+}
+
+/* 削除ボタン右下固定 */
+.delete-form {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+}
+
+.delete-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.delete-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.delete-icon {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.25));
+}
