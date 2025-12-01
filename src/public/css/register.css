@@ -1,98 +1,86 @@
 body {
-    background: #f5f5f5;
-    font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-family: "Hiragino Sans", sans-serif;
+    background: #f7f7f7;
     margin: 0;
+    padding: 40px 0;
 }
 
 .container {
-    width: 60%;
-    max-width: 800px;
+    width: 700px;
+    margin: auto;
     background: white;
-    margin: 60px auto;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px 60px;
+    border-radius: 10px;
 }
 
 .title {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 40px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
+/* --- ラベルと必須マーク --- */
 label {
-    display: block;
-    margin-bottom: 8px;
     font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
 }
 
 .required {
-    color: white;
-    background: #E53E3E;
-    padding: 2px 6px;
-    font-size: 12px;
-    border-radius: 3px;
-    margin-left: 6px;
+    color: red;
+    font-size: 14px;
+    margin-left: 5px;
 }
 
-.multiple {
-    color: #E53E3E;
-    margin-left: 10px;
-    font-size: 12px;
-}
-
-input[type="text"],
-input[type="number"],
-textarea {
+/* --- 入力欄 --- */
+.form-control {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 5px;
 }
 
-textarea {
+/* --- エラーメッセージ --- */
+.error-text {
+    color: red;
+    font-size: 14px;
+    margin: 0 0 4px 0;
+}
+
+/* --- 季節チェックボックス --- */
+.season-checkbox label {
+    margin-right: 15px;
+}
+
+/* --- 商品説明欄 --- */
+textarea.form-control {
     height: 120px;
     resize: vertical;
 }
 
-/* ファイル選択 */
-input[type="file"] {
-    padding: 6px 0;
-}
-
-/* 季節選択ラジオボタン（チェックボックス） */
-.season-radio label {
-    margin-right: 20px;
-}
-
+/* --- ボタン --- */
 .button-area {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+    text-align: center;
     margin-top: 30px;
 }
 
-.btn {
+.btn-submit {
+    background: #f2a900;
+    color: white;
     padding: 10px 40px;
     border-radius: 5px;
+    text-decoration: none;
     border: none;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
+    font-size: 16px;
+    margin: 0 10px;
 }
 
-.btn.back {
-    background: #ddd;
-    color: #333;
+.btn-submit:hover {
+    opacity: 0.9;
 }
 
-.btn.submit {
-    background: #f9c400;
-    color: #333;
+.btn-gray {
+    background: #777;
 }

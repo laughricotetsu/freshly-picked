@@ -126,7 +126,7 @@ body {
     color: #f2a900;
 }
 
-pagination .page-link:hover {
+.pagination .page-link:hover {
     background: #fff3c2;
 }
 

@@ -4,7 +4,7 @@
 <div class="container">
 
 <title>商品一覧</title>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 <body>
 
@@ -24,8 +24,8 @@
         <div class="form-group">
         <input type="text" name="keyword" placeholder="商品名で検索" class="search-input">
             <button class="search-btn">検索</button>
-            <label for="sort">価格順で表示</label>
-            <select name="sort" id="sort" class="form-control">
+            <label for="sort" class="price-label">価格順で表示</label>
+            <select name="sort" id="sort" class="price-select">
                 <option value="">選択してください</option>
                 <option value="price_desc"  {{ request('sort') == 'price_desc' ? 'selected' : '' }}>価格が高い順</option>
              <option value="price_asc" {{ request('sort')=='price_asc' ? 'selected' : '' }}>

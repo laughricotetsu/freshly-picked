@@ -56,6 +56,8 @@ public function index(Request $request)
      */
     public function store(StoreProductRequest $request)
 {
+    $validated = $request->validated();
+
     // 画像を保存
     $imageName = null;
 
