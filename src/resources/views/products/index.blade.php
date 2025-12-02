@@ -34,6 +34,19 @@
             </select>
         </div>
     </form>
+
+    @if (request('sort'))
+                <div class="sort-tag">
+                    @if (request('sort') === 'price_desc')
+                        <span>価格が高い順</span>
+                    @elseif (request('sort') === 'price_asc')
+                        <span>価格が低い順</span>
+                    @endif
+
+                    <!-- 並び替え解除（sort を外した URL に戻す） -->
+                    <a href="{{ route('products.index', ['keyword' => request('keyword')]) }}" class="sort-reset">×</a>
+                </div>
+            @endif
     </aside>
 
         <!-- 右側：商品一覧 -->

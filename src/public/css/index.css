@@ -159,3 +159,28 @@ body {
 .pagination span {
     border-radius: 50%;
 }
+
+.sort-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #f7c948;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.sort-tag span {
+    margin-right: 8px;
+}
+
+.sort-reset {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.sort-reset:hover {
+    opacity: 0.7;
+}
