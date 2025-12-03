@@ -114,7 +114,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="delete-icon-btn">
-                    <img src="{{ asset('storage/img/trash.png') }}" 
+                    <img src="{{ asset('storage/img/trash.png') }}"
                         alt="削除" class="delete-icon">
                 </button>
             </form>
