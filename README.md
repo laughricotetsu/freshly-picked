@@ -43,7 +43,7 @@ php artisan migrate
 7.シーディングの実行  
 ``` bash  
 php artisan db:seed  
-  
+```
   
 ## 使用技術(実行環境)  
 - PHP8.3.0  
