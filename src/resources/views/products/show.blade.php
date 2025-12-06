@@ -50,11 +50,11 @@
                     <input type="text"
                         name="name"
                         value="{{ old('name', $product->name) }}"
-                        class="form-input">
-                    @error('name')
+                        class="form-control">
+                </div>
+                @error('name')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
-                </div>
 
                 {{-- 値段 --}}
                 <div class="form-group">
@@ -63,10 +63,10 @@
                         name="price"
                         value="{{ old('price', $product->price) }}"
                         class="form-input">
-                    @error('price')
+                </div>
+                @error('price')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
-                </div>
 
                 {{-- 季節 --}}
                 <div class="form-group">
