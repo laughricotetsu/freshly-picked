@@ -11,7 +11,7 @@
 
 ``` bash
 mysql:
-    platform: linux/x86_64(この文追加)
+    platform: linux/x86_64
     image: mysql:8.0.26
     environment:
 ```  
