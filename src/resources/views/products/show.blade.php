@@ -26,12 +26,10 @@
                 ファイルを選択
                 <input type="file" name="image" class="file-input" form="update-form">
             </label>
-
-            @error('image')
+        </div>
+        @error('image')
                 <p class="error-message">{{ $message }}</p>
             @enderror
-
-        </div>
 
         {{-- 右側（商品情報フォーム） --}}
         <div class="product-info-area">
@@ -52,7 +50,7 @@
                         value="{{ old('name', $product->name) }}"
                         class="form-control">
                 </div>
-                @error('name')
+                    @error('name')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
 
@@ -62,9 +60,9 @@
                     <input type="number"
                         name="price"
                         value="{{ old('price', $product->price) }}"
-                        class="form-input">
+                        class="form-control">
                 </div>
-                @error('price')
+                    @error('price')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
 
@@ -94,11 +92,10 @@
                     <textarea name="description"
                         class="form-textarea"
                         rows="6">{{ old('description', $product->description) }}</textarea>
-
+                </div>
                     @error('description')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
-                </div>
 
                 {{-- ボタン --}}
                 <div class="button-area">
